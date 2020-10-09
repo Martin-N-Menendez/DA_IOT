@@ -55,4 +55,4 @@ Se crearon dos tablas, una para listar los dispositivos y otra para sus medicion
 
 # Back-end NodeJS
 
-# Front-end Ionic
+# Front-end Ionic 
