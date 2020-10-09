@@ -32,6 +32,8 @@ En node-red:1880/ui se puede ver una versión preliminar donde cada minuto apare
 
 # Base de datos SQlite
 
+![sqlite](sqlite.PNG)
+
 # Back-end NodeJS
 
 # Front-end Ionic
