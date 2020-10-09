@@ -34,14 +34,19 @@ En node-red:1880/ui se puede ver una versión preliminar donde cada minuto apare
 
 ![sqlite](sqlite.PNG)
 
-| ID | nombre | estado |
-| :-: | :-: | :-: |
-| 1 | 'T_1'  | 0 |
+Se crearon dos tablas, una para listar los dispositivos y otra para sus mediciones.
 
+## Dispositivos
 
-| ID | nombre | estado |
+| dispositivoID | nombre | ubicacion |
 | :-: | :-: | :-: |
-| 1 | 'T_1'  | 0 |
+| 1 | 'ESP32_1'  | 'Habitacion' |
+| 2 | 'ESP32_2'  | 'Living' |
+| 3 | 'ESP32_3'  | 'Balcon' |
+
+| ID | dispositivoID | temperatura | mag_y | tiempo |
+| :-: | :-: | :-: | :-: | :-: |
+| 1 | 'T_1'  | 0 | 0 | 0 |
 
 # Back-end NodeJS
 
