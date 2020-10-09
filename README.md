@@ -17,6 +17,8 @@ Se envía el dato por MQTT al puerto 192.168.0.239, el puerto de la Raspberry Pi
 
 # Broker
 
+Se instalo el broker mosquito.
+
 # Node-red
 
 ## Conexión de bloques en Node-red
