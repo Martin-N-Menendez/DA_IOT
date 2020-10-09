@@ -46,7 +46,10 @@ Se crearon dos tablas, una para listar los dispositivos y otra para sus medicion
 
 | ID | dispositivoID | temperatura | mag_y | tiempo |
 | :-: | :-: | :-: | :-: | :-: |
-| 1 | 'T_1'  | 0 | 0 | 0 |
+| 1 | 1  | 25 | 60 | 11:14 |
+| 2 | 1  | 27 | 30 | 11:15 |
+| 3 | 2  | 24 | 16 | 11:16 |
+| 4 | 1  | 23 | 32 | 11:16 |
 
 # Back-end NodeJS
 
