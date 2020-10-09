@@ -44,12 +44,12 @@ Se crearon dos tablas, una para listar los dispositivos y otra para sus medicion
 | 2 | 'ESP32_2'  | 'Living' |
 | 3 | 'ESP32_3'  | 'Balcon' |
 
-| ID | dispositivoID | temperatura | mag_y | tiempo |
-| :-: | :-: | :-: | :-: | :-: |
-| 1 | 1  | 25 | 60 | 11:14 |
-| 2 | 1  | 27 | 30 | 11:15 |
-| 3 | 2  | 24 | 16 | 11:16 |
-| 4 | 1  | 23 | 32 | 11:16 |
+| ID | dispositivoID | tiempo | temperatura | mag_x | mag_y | mag_z |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| 1 | 1 | 11:14 | 25 | 60 | 30 | 20 |
+| 2 | 1 | 11:14 | 27 | 64 | 34 | 23 |
+| 3 | 2 | 11:14 | 24 | 57 | 50 | 18 |
+| 4 | 1 | 11:14 | 23 | 50 | 32 | 21 |
 
 # Back-end NodeJS
 
