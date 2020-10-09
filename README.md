@@ -46,7 +46,7 @@ Se crearon dos tablas, una para listar los dispositivos y otra para sus medicion
 | 2 | 'ESP32_2'  | 'Living' |
 | 3 | 'ESP32_3'  | 'Balcon' |
 
-| ID | dispID | tiempo | temperatura | mag_x | mag_y | mag_z |
+| ID | dispID | tiempo | temperatura | magnetico | giroscopio | aceleracion |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | 1 | 1 | 11:14:12 | 25 | 60 | 30 | 20 |
 | 2 | 1 | 11:14:14 | 27 | 64 | 34 | 23 |
