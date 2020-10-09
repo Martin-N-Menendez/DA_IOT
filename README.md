@@ -13,7 +13,9 @@
 
 # Node-red
 
-![ASD](iot_1.png)
+![ASD](iot_1.PNG)
+
+![ASD](iot_2.PNG)
 
 # Base de datos SQlite
 
