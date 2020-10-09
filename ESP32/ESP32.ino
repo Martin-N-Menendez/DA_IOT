@@ -20,7 +20,7 @@ MPU9250_asukiaaa mySensor;
 float aX, aY, aZ, aSqrt;
 float gX, gY, gZ;
 float mDirection;
-uint16_t mX, mY, mZ;
+float mX, mY, mZ;
 int T;
 
 WiFiClient wifiClient;
@@ -81,17 +81,42 @@ void connect() {
 
 void MQTT_send(void) {
 
+  uint32_t id;
+
+  id = random(1, 6);
+
+  String ubicacion[] = {"Cuarto","Cocina","Living","Comedor","Balcon","Hall"};
+  
+  client.publish("DispID", String(id));
+
+  client.publish("Ubicacion", String(ubicacion[id]));
+  client.publish("Nombre", "ESP_"+String(id));
+  
   client.publish("Temperatura", String(T));
+
+
+  float m_abs = sqrt(mX*mX+mY*mY+mZ*mZ);
+  float g_abs = sqrt(gX*gX+gY*gY+gZ*gZ);
+  float a_abs = sqrt(aX*aX+aY*aY+aZ*aZ);
+  
   client.publish("Magnetometro/m_x", String(mX));
   client.publish("Magnetometro/m_y", String(mY));
   client.publish("Magnetometro/m_z", String(mZ));
+  
+  client.publish("Magnetometro", String(m_abs));
+  
   client.publish("Giroscopio/g_x", String(gX));
   client.publish("Giroscopio/g_y", String(gY));
   client.publish("Giroscopio/g_z", String(gZ));
+
+  client.publish("Giroscopio", String(g_abs));
+  
   client.publish("Aceleracion/a_x", String(aX));
   client.publish("Aceleracion/a_y", String(aY));
   client.publish("Aceleracion/a_z", String(aZ));
 
+  client.publish("Aceleracion", String(a_abs));
+  
   Serial.print("MQTT > Publicado!");
 }
 
@@ -188,7 +213,7 @@ void loop() {
 
   if (millis() - sendEntry > 60 * 1000) {
     sendEntry = millis();
-    Calculate();
+  
     leer_aceleracion();
     leer_giroscopio();
     leer_magnetometro();
@@ -208,18 +233,6 @@ void loop() {
 
 
 }
-
-
-
-void Calculate() {
-  uint32_t data;
-
-  data = random(0, 10);
-  if (TERMINAL == 1) {
-    Serial.println("---------| " + String(data) + " |--------");
-  }
-}
-
 
 
 void initSerial() {
