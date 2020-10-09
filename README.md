@@ -34,6 +34,15 @@ En node-red:1880/ui se puede ver una versión preliminar donde cada minuto apare
 
 ![sqlite](sqlite.PNG)
 
+| ID | nombre | estado |
+| :-: | :-: | :-: |
+| 1 | 'T_1'  | 0 |
+
+
+| ID | nombre | estado |
+| :-: | :-: | :-: |
+| 1 | 'T_1'  | 0 |
+
 # Back-end NodeJS
 
 # Front-end Ionic
