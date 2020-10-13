@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mediciones del sensor {{dispId}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Fecha</th>
+      <th>Valor</th>
+    </tr>
+    <tr *ngFor="let m of Mediciones">
+      <td>{{m.medicionId}}</td>
+      <td>{{m.fecha | date:"short" }}</td>
+      <td>{{m.valor}}</td>
+    </tr>
+  </table>
+</ion-content>
