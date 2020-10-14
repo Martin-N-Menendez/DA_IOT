@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./detalle-sensor/detalle-sensor.module').then( m => m.DetalleSensorPageModule)
   },
   {
-    path: 'riego/:Id',
-    loadChildren: () => import('./log-riego/log-riego.module').then( m => m.LogRiegoPageModule)
-  },
-  {
     path: 'medicion/:Id/todas',
     loadChildren: () => import('./mediciones/mediciones.module').then( m => m.MedicionesPageModule)
   },

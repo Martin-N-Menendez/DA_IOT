@@ -13,16 +13,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <ion-item *ngFor="let dispositivo of listado" routerLink="/detalle-sensor/{{dispositivo.dispositivoId}}"
+    <ion-item *ngFor="let dispositivo of listado" routerLink="/detalle-sensor/{{dispositivo.dispositivoID}}"
       routerDirection="root">
       <ion-avatar slot="start">
         <ion-icon size="large" name="water-outline"></ion-icon>
       </ion-avatar>
       <ion-label>
-        <h2>{{dispositivo.nombre}} | Electrovalvula {{dispositivo.electrovalvulaId}}</h2>
+        <h2>{{dispositivo.nombre}} | Ubicacion: {{dispositivo.ubicacion}} </h2>
         <h3>
           <ion-icon name="pin">
-          </ion-icon> {{dispositivo.ubicacion}}
+          </ion-icon> {{dispositivo.dispositivoID}}
         </h3>
       </ion-label>
     </ion-item>

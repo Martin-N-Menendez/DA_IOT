@@ -12,13 +12,12 @@ export class DispositivoService {
   public get listado(): Promise<Array<Dispositivo>> {
     return this._http.get("http://localhost:3000/dispositivo").toPromise().then(
       (listado: Array<Dispositivo>) => {
-        //console.log("Leido:",listado);
+        console.log("Leido:",listado);
         let listado2: Array<Dispositivo> = new Array<Dispositivo>();
         listado.forEach(r => listado2.push(new Dispositivo(
-          r.dispositivoId, 
+          r.dispositivoID, 
           r.nombre, 
-          r.ubicacion, 
-          r.electrovalvulaId
+          r.ubicacion
           )));
         return listado2;
       }
@@ -35,10 +34,9 @@ export class DispositivoService {
       (r: Dispositivo) => {
         let d = r[0];
         let dispositivo: Dispositivo = new Dispositivo(
-          d.dispositivoId, 
+          d.dispositivoID, 
           d.nombre, 
-          d.ubicacion, 
-          d.electrovalvulaId
+          d.ubicacion
         );
         //console.log("Dispositivo prometido " + dispositivo );
         return dispositivo;
