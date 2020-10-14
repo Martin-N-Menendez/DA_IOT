@@ -4,8 +4,8 @@
 - [x] Broker mosquito
 - [x] Node-red
 - [x] Base de datos SQlite
-- [ ] Back-end Nodejs
-- [ ] Front-end Ionic
+- [x] Back-end Nodejs
+- [x] Front-end Ionic
 
 # ESP32
 

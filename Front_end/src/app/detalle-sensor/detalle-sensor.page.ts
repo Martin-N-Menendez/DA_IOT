@@ -209,7 +209,7 @@ export class DetalleSensorPage implements OnInit {
 
     
     this.medicion_log_post.dispID = this.dispId;
-    this.medicion_log_post.temperatura = this.medicion.temperatura; 
+    this.medicion_log_post.temperatura = 0; 
     this.medicion_log_post.tiempo = new Date();
     this.medicion_log_post.magnetico = this.medicion.magnetico;
     this.medicion_log_post.giroscopio = this.medicion.giroscopio;
