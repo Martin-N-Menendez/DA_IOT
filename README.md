@@ -102,28 +102,19 @@ Eligiendo cualquiera de los dispositivos se puede acceder a los datos del sensor
 Al ingresar se visualizara el sensor con el valor por defecto (ultimo cargado en la base de datos)
 ![valor por defecto](Disp_defecto.png)
 
-Al presionar "cerrar electrovalvula" el boton cambiara a "abrir electrovalvula", se impondra un valor de 25 en el sensor y se guardaran los datos en el log de mediciones y riego.
+Al presionar "cerrar electrovalvula" el boton cambiara a "abrir electrovalvula", se impondra un valor de 0 en el sensor y se guardaran los datos en el log.
 
-![dispositivo abierto](Dsip_abrir.png)
+![dispositivo abierto](Disp_abrir.png)
 
-Al presionar "abrir electrovalvula" el boton cambiara a "cerrar electrovalvula", se impondra un valor de 75 en el sensor y se guardaran los datos en el log de mediciones y riego.
+Al presionar "abrir electrovalvula" el boton cambiara a "cerrar electrovalvula", se cargara el valor de temperatura anterior en el sensor y se guardaran los datos en el log.
 
-![dispositivo cerrado](Disp_cerrar.png)
+![dispositivo cerrado](Disp_defecto.png)
 
-Los valores de 25 y 75 son solo constantes arbitrarias.
+En ambos casos el valor de "valvula" se actualizara en la base de datos, con el timestamp correspondiente.
 
 ## Medicion
 
-Al presionar "ver todas las mediciones" se puede acceder al historial de mediciones, donde figura el ID de las mismas, la fecha en que ocurrieron y el valor del sensor (en este caso 25 y 75).
-
-![Log de medicion](Medicion.png)
-
-## Riego
-
-Al presionar "Ver los riegos" se accedera al historial de riegos, donde la fecha tiene otro formato (pipe custom) y el nivel de apertura sera un porcentaje siempre que sea un valor mayor a 0% o la palabra "Cerrado" en rojo (directiva custom) si el nivel de apertura es 0%.
-
-![Log de riego](Riego.png)
-
+Al presionar "ver todas las mediciones" se puede acceder al historial de mediciones, donde figura el ID de las mismas, la fecha (con formato pipe custom) en que ocurrieron y el valor de los sensores (temperatura, campo magnetico, giroscopo, aceleracion) y la apertura de valvula indicara "Cerrado" en rojo (directiva custom) si el nivel de apertura es 0%.
 
 # Contribuir
 Para contribuir realizar un pull request con las sugerencias.
