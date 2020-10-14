@@ -14,12 +14,20 @@
     <tr>
       <th>ID</th>
       <th>Fecha</th>
-      <th>Valor</th>
+      <th>Temperatura</th>
+      <th>Magnetico</th>
+      <th>Giroscopio</th>
+      <th>Aceleracion</th>
+      <th>Valvula</th>
     </tr>
     <tr *ngFor="let m of Mediciones">
-      <td>{{m.medicionId}}</td>
-      <td>{{m.fecha | date:"short" }}</td>
-      <td>{{m.valor}}</td>
+      <td>{{m.ID}}</td>
+      <td>{{m.tiempo | fechaPipe}}</td>
+      <td>{{m.temperatura}}</td>
+      <td>{{m.magnetico}}</td>
+      <td>{{m.giroscopio}}</td>
+      <td>{{m.aceleracion}}</td>
+      <td  *ngIf="m.valvula == 0" appResaltar>Cerrado</td>
     </tr>
   </table>
 </ion-content>

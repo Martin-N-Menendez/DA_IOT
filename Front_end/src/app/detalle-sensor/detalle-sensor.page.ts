@@ -25,6 +25,7 @@ export class DetalleSensorPage implements OnInit {
   private chartOptions;
 
   public dispId: number;
+  public apertura: number = 0;
 
   public dispositivo: Dispositivo;
   public medicion: Medicion;
@@ -60,18 +61,18 @@ export class DetalleSensorPage implements OnInit {
       console.log("Medido",d);
       this.medicion = d;
     });
-    this.valorObtenido = Number(this.medicion.valor);
-/*
-    this.rServ.getnewRiegoLog(this.dispId ).then(r => {
-      //console.log("Log riego",r);
-      this.riego_log = r;
-      this.riego_logs.push(this.riego_log);
-      if(this.riego_log.apertura == 0)
-        this.mensajeBoton = "ABRIR ELECTROVALVULA " + this.riego_log.electrovalvulaId;
-      else
-        this.mensajeBoton = "CERRAR ELECTROVALVULA " + this.riego_log.electrovalvulaId;
-    });
-    */
+    this.valorObtenido = Number(this.medicion.temperatura);
+    this.apertura = Number(this.medicion.valvula);
+
+    //console.log("Valor",this.valorObtenido);
+    console.log("Ap",this.apertura);
+
+
+  if(this.apertura == 0)
+    this.mensajeBoton = "ABRIR ELECTROVALVULA " + this.medicion.dispID;
+  else
+    this.mensajeBoton = "CERRAR ELECTROVALVULA " + this.medicion.dispID;
+
   }
 
   generarChart() {
@@ -115,7 +116,7 @@ export class DetalleSensorPage implements OnInit {
             rotation: 'auto'
         },
         title: {
-            text: 'kPA'
+            text: '°C'
         },
         plotBands: [{
             from: 0,
@@ -134,10 +135,10 @@ export class DetalleSensorPage implements OnInit {
     ,
   
     series: [{
-        name: 'kPA',
+        name: '°C',
         data: [this.valorObtenido],
         tooltip: {
-            valueSuffix: ' kPA'
+            valueSuffix: ' °C'
         }
     }]
 
@@ -146,52 +147,51 @@ export class DetalleSensorPage implements OnInit {
   }
 
   public actualizarValvula() {
-    var cosa = 0;
+  
     //console.log("actual:",this.riego_log.apertura);
-    //if(this.riego_log.apertura == 0)
-    if(cosa == 0)
+    if(this.apertura == 0)
     {
       this.abrirValvula();
-      cosa = 1;
+      this.actualizar_datos(); 
     }
     else
     {
       this.cerrarValvula();
-      cosa = 0;
       this.actualizar_datos(); 
     } 
   }
 
   public abrirValvula() {
-    /*this.riego_log_post = new RiegoLog();
 
-    this.riego_log_post.electrovalvulaId = this.dispId;
-    this.riego_log_post.apertura = 100;
-    this.riego_log_post.fecha = new Date();
-
-    this.rServ.addnewRiegoLog(this.riego_log_post).then( (res) => {
-      this.riego_log_post.apertura = 100;
-      this.mensajeBoton = "CERRAR ELECTROVALVULA" + ' ' + this.dispId;
-      //console.log(this.riego_log_post);  
-    })
-    */
     this.medicion_log_post = new Medicion();
-    this.medicion_log_post.dispositivoId = this.dispId;
-    this.medicion_log_post.valor = 75;
-    this.medicion_log_post.fecha = new Date();
-    
+
+    this.mServ.getMedicion(this.dispId).then(d => {
+      console.log("Medido_A",d);
+      this.medicion = d;
+    });
+
+    this.medicion_log_post.dispID = this.dispId;
+    this.medicion_log_post.temperatura = this.medicion.temperatura; 
+    this.medicion_log_post.tiempo = this.medicion.tiempo;
+    this.medicion_log_post.magnetico = this.medicion.magnetico;
+    this.medicion_log_post.giroscopio = this.medicion.giroscopio;
+    this.medicion_log_post.aceleracion = this.medicion.aceleracion;
+    this.medicion_log_post.valvula = 1;
+    this.apertura = this.medicion_log_post.valvula;
+
     this.mServ.addnewMedicionLog(this.medicion_log_post).then( (res) => {
-      this.medicion_log_post.valor = 75;
-      console.log(this.medicion_log_post);  
+      this.mensajeBoton = "CERRAR ELECTROVALVULA" + ' ' + this.dispId; 
+      console.log("C",this.medicion_log_post);  
+      this.apertura = this.medicion_log_post.valvula;
     })
     
     this.myChart.update(
       {
         series: [
           {
-            name: 'kPA',
-            data: [this.medicion_log_post.valor],
-            tooltip: { valueSuffix: ' kPA' }
+            name: '°C',
+            data: [this.medicion_log_post.temperatura],
+            tooltip: { valueSuffix: ' °C' }
           }
         ]
       }
@@ -201,34 +201,35 @@ export class DetalleSensorPage implements OnInit {
 
   public cerrarValvula() {
     
-    //this.riego_log_post = new RiegoLog();
-    //this.riego_log_post.electrovalvulaId = this.dispId;
-    //this.riego_log_post.apertura = 0;
-    //this.riego_log_post.fecha = new Date();
-
-    /*this.rServ.addnewRiegoLog(this.riego_log_post).then( (res) => {
-      this.mensajeBoton = "ABRIR ELECTROVALVULA" + ' ' + this.dispId;
-      this.riego_log_post.apertura = 0;
-      //console.log(this.riego_log);  
-    })
-    */
     this.medicion_log_post = new Medicion();
-    this.medicion_log_post.dispositivoId = this.dispId;
-    this.medicion_log_post.valor = 25;
-    this.medicion_log_post.fecha = new Date();
+    this.mServ.getMedicion(this.dispId).then(d => {
+      console.log("Medido_C",d);
+      this.medicion = d;
+    });
+
+    
+    this.medicion_log_post.dispID = this.dispId;
+    this.medicion_log_post.temperatura = this.medicion.temperatura; 
+    this.medicion_log_post.tiempo = new Date();
+    this.medicion_log_post.magnetico = this.medicion.magnetico;
+    this.medicion_log_post.giroscopio = this.medicion.giroscopio;
+    this.medicion_log_post.aceleracion = this.medicion.aceleracion;
+    this.medicion_log_post.valvula = 0;
+    this.apertura = this.medicion_log_post.valvula;
 
     this.mServ.addnewMedicionLog(this.medicion_log_post).then( (res) => {
-      this.medicion_log_post.valor = 25;
-      console.log(this.medicion_log_post);  
+      this.mensajeBoton = "ABRIR ELECTROVALVULA" + ' ' + this.dispId;
+      console.log("A",this.medicion_log_post);  
+      this.apertura = this.medicion_log_post.valvula;
     })
     
     this.myChart.update(
       {
         series: [
           {
-            name: 'kPA',
-            data: [this.medicion_log_post.valor],
-            tooltip: { valueSuffix: ' kPA' }
+            name: '°C',
+            data: [this.medicion_log_post.temperatura],
+            tooltip: { valueSuffix: ' °C' }
           }
         ]
       }

@@ -9,15 +9,19 @@ export class MedicionesService {
 
   constructor(private _http: HttpClient) { }
 
-  public getMedicion(id: number): Promise<Medicion> {
-    return this._http.get("http://localhost:3000/medicion/" + id).toPromise().then(
+  public getMedicion(dispID: number): Promise<Medicion> {
+    return this._http.get("http://localhost:3000/medicion/" + dispID).toPromise().then(
       (r: Medicion) => {
         let e = r;
         let medicion: Medicion = new Medicion(
-          e.medicionId,
-          e.fecha,
-          e.valor,
-          e.dispositivoId
+          e.ID,
+          e.dispID,
+          e.tiempo,
+          e.temperatura,
+          e.magnetico,
+          e.giroscopio,
+          e.aceleracion,
+          e.valvula
         );
         //console.log("Medicion prometida " + dispositivo );
         return medicion;
@@ -36,10 +40,14 @@ export class MedicionesService {
         let measurements: Array<Medicion> = new Array<Medicion>();
         console.log(measurements);
         m.forEach(e => measurements.push(new Medicion(
-          e.medicionId,
-          e.fecha,
-          e.valor,
-          e.dispositivoId
+          e.ID,
+          e.dispID,
+          e.tiempo,
+          e.temperatura,
+          e.magnetico,
+          e.giroscopio,
+          e.aceleracion,
+          e.valvula
         )))
         return measurements;
       })
@@ -64,7 +72,7 @@ export class MedicionesService {
   */
 
   public addnewMedicionLog(x: Medicion) {
-    return this._http.post(`http://localhost:3000/medicion/`,[x.valor, x.dispositivoId]).toPromise()
+    return this._http.post(`http://localhost:3000/medicion/`,[x.dispID, x.temperatura , x.magnetico , x.giroscopio , x.aceleracion, x.valvula]).toPromise()
       .then((result) => {
         return result;
       });
