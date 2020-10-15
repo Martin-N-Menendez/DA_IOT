@@ -28,6 +28,7 @@ export class DetalleSensorPage implements OnInit {
   public apertura: number = 0;
 
   public dispositivo: Dispositivo;
+  public dispositivo_log: Dispositivo;
   public medicion: Medicion;
   public medicion_log_post: Medicion;
 
@@ -144,6 +145,30 @@ export class DetalleSensorPage implements OnInit {
 
     };
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+  }
+
+
+  public eliminardispositivo() {
+  
+    console.log("Eliminando nodo",this.dispId);
+    
+    this.medicion_log_post = new Medicion();
+
+    this.dServ.getDispositivo(this.dispId).then(d => {
+      console.log("disp",d);
+      this.dispositivo = d;
+      console.log("<<",this.dispositivo);
+      this.dServ.removeDisp(this.dispositivo);
+    });
+
+    console.log(">>",this.dispositivo);
+
+    /*
+    this.dServ.removeDisp(this.dispositivo).then(d => {
+      console.log("Eliminado",d);
+      //this.medicion = d;
+    });
+    */
   }
 
   public actualizarValvula() {

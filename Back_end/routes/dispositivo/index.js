@@ -53,5 +53,31 @@ routerDispositivo.get('/:id', function(req, res) {
     });
 });
 
+routerDispositivo.post('/:id', function(req, res){
+    console.log("ADIOS",req.params.id);
+    pool.query('DELETE FROM Dispositivos WHERE dispositivoId=?',req.params.id,  function(err, result, fields) {       // TODO que hago si el ID no existe?
+        if (err) {
+            res.send(err).status(400);
+            return;
+        }
+        var r = result[0];
+        console.log(r); 
+        res.send(result);
+    });
+  });
+
+  routerDispositivo.post('/', function(req, res){
+    console.log(req.body);
+    console.log('DELETE FROM Dispositivos WHERE dispositivoId='+req.body[0]+';');
+    
+    pool.query('DELETE FROM Dispositivos WHERE dispositivoId=?',[req.body[0]], (err, result, fields) => { 
+      if(err) {
+        console.log("CHE")
+        res.send(err).status(400);
+        return;
+      }
+      res.send(result);
+    })
+  });
 
 module.exports = routerDispositivo;

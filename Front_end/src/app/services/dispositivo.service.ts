@@ -47,4 +47,11 @@ export class DispositivoService {
     });
   }
 
+  public removeDisp(x: Dispositivo) {
+    return this._http.post(`http://localhost:3000/dispositivo/`,[x.dispositivoID,x.nombre]).toPromise()
+      .then((result) => {
+        return result;
+      });
+  }
+
 }
